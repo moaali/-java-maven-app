@@ -4,13 +4,13 @@ pipeline {
 		maven 'Maven'
 	}
 	stages {
-		stage 'Build JAR' {
+		stage('Build JAR') {
 			steps {
 				echo 'Building JAR...'
 				sh 'maven package'
 			}
 		}
-		stage 'Build Image' {
+		stage('Build Image') {
 			steps {
 				echo 'Building Image...'
 				widthCredentials(usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')) {
@@ -20,7 +20,7 @@ pipeline {
 				}
 			}
 		}
-		stage 'Deploy' {
+		stage('Deploy') {
 			steps {
 				echo 'Deploying...'
 			}
